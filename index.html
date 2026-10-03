@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="N Prabakaran Sethu - Java Full Stack Developer Portfolio" />
+  <title>N Prabakaran Sethu | Java Full Stack Developer</title>
+
+  <style>
+    :root{
+      --bg:#08111f;
+      --bg2:#0d1728;
+      --card:rgba(16,29,48,.78);
+      --text:#eef5ff;
+      --muted:#9fb0c7;
+      --primary:#64b5ff;
+      --primary2:#8b7cff;
+      --border:rgba(255,255,255,.10);
+      --shadow:0 20px 60px rgba(0,0,0,.28);
+      --max:1120px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(100,181,255,.12), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(139,124,255,.12), transparent 28%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{width:min(92%,var(--max));margin:auto}
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      background:rgba(8,17,31,.78);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-inner{
+      height:72px;display:flex;align-items:center;justify-content:space-between;
+    }
+    .logo{font-weight:800;font-size:1.2rem;letter-spacing:.5px}
+    .logo span{color:var(--primary)}
+    .nav-links{display:flex;gap:24px;list-style:none}
+    .nav-links a{color:var(--muted);font-size:.94rem;transition:.25s}
+    .nav-links a:hover{color:var(--text)}
+    .menu{display:none;background:none;border:0;color:var(--text);font-size:1.5rem}
+
+    section{padding:95px 0;scroll-margin-top:70px}
+    .hero{min-height:100vh;display:flex;align-items:center;padding-top:120px}
+    .hero-grid{
+      display:grid;grid-template-columns:1.35fr .85fr;gap:55px;align-items:center;
+    }
+    .eyebrow{
+      display:inline-flex;padding:7px 13px;border:1px solid rgba(100,181,255,.25);
+      border-radius:999px;color:var(--primary);background:rgba(100,181,255,.06);
+      font-size:.85rem;margin-bottom:20px;
+    }
+    h1{font-size:clamp(3rem,7vw,5.8rem);line-height:.98;letter-spacing:-4px}
+    h1 span{
+      background:linear-gradient(90deg,var(--primary),var(--primary2));
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .hero p{max-width:690px;color:var(--muted);font-size:1.08rem;margin:25px 0}
+    .buttons{display:flex;gap:14px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:12px 19px;border-radius:10px;border:1px solid var(--border);
+      font-weight:700;transition:.25s;cursor:pointer
+    }
+    .btn.primary{background:linear-gradient(135deg,var(--primary),var(--primary2));color:#06101e;border:0}
+    .btn.secondary{background:rgba(255,255,255,.03)}
+    .btn:hover{transform:translateY(-2px)}
+
+    .hero-card{
+      padding:28px;border:1px solid var(--border);background:var(--card);
+      border-radius:24px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+    }
+    .hero-card:before{
+      content:"";position:absolute;width:170px;height:170px;border-radius:50%;
+      background:rgba(100,181,255,.13);filter:blur(35px);right:-50px;top:-50px;
+    }
+    .code-window{font-family:Consolas,monospace;color:#b9c8da;font-size:.92rem}
+    .code-window .blue{color:#70c5ff}.code-window .purple{color:#aa9aff}
+    .code-window .green{color:#83d6a3}.code-window .orange{color:#ffbd7a}
+    .code-line{margin:7px 0}
+
+    .section-title{margin-bottom:38px}
+    .section-title .tag{color:var(--primary);font-size:.8rem;text-transform:uppercase;letter-spacing:2px}
+    .section-title h2{font-size:2.4rem;margin-top:5px}
+    .section-title p{color:var(--muted);max-width:680px;margin-top:8px}
+
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px}
+    .card{
+      background:var(--card);border:1px solid var(--border);border-radius:18px;
+      padding:27px;box-shadow:var(--shadow)
+    }
+    .card h3{margin-bottom:12px}
+    .card p,.card li{color:var(--muted)}
+    .facts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+    .fact{padding:15px;border:1px solid var(--border);border-radius:12px;background:rgba(255,255,255,.025)}
+    .fact strong{display:block}.fact span{font-size:.85rem;color:var(--muted)}
+
+    .skills{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .skill-card h3{font-size:1rem;margin-bottom:12px}
+    .chips{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{
+      padding:7px 10px;border-radius:8px;background:rgba(100,181,255,.07);
+      border:1px solid rgba(100,181,255,.15);color:#cfe5fb;font-size:.85rem
+    }
+
+    .timeline{position:relative;padding-left:28px;border-left:1px solid rgba(100,181,255,.25)}
+    .timeline-item{position:relative;margin-bottom:25px}
+    .timeline-item:before{
+      content:"";position:absolute;width:10px;height:10px;border-radius:50%;
+      background:var(--primary);left:-34px;top:7px;box-shadow:0 0 0 5px rgba(100,181,255,.09)
+    }
+    .date{color:var(--primary);font-size:.85rem;font-weight:700}
+    .timeline h3{margin:4px 0}
+    .timeline p{color:var(--muted)}
+    .timeline ul{margin:12px 0 0 18px;color:var(--muted)}
+
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+    .project{position:relative;overflow:hidden}
+    .project.featured{grid-column:1/-1}
+    .project-top{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}
+    .project h3{font-size:1.25rem}
+    .project-badge{
+      font-size:.72rem;padding:5px 9px;border-radius:999px;
+      background:rgba(139,124,255,.13);color:#c4bcff;white-space:nowrap
+    }
+    .project p{margin:10px 0;color:var(--muted)}
+    .project ul{padding-left:18px;color:var(--muted);margin-bottom:16px}
+    .tech{display:flex;flex-wrap:wrap;gap:7px}
+    .tech span{font-size:.75rem;padding:5px 8px;border:1px solid var(--border);border-radius:6px;color:#c5d1e0}
+
+    .certs{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .cert{padding:15px 18px;background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:12px}
+    .cert span{color:var(--muted);font-size:.86rem}
+
+    .contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:22px}
+    .contact-item{display:flex;gap:13px;padding:15px 0;border-bottom:1px solid var(--border)}
+    .contact-item:last-child{border-bottom:0}
+    .contact-item strong{display:block}
+    .contact-item span{color:var(--muted);font-size:.9rem}
+    .contact-form{display:grid;gap:13px}
+    input,textarea{
+      width:100%;background:rgba(255,255,255,.035);border:1px solid var(--border);
+      color:var(--text);border-radius:10px;padding:13px;font:inherit;outline:none
+    }
+    input:focus,textarea:focus{border-color:rgba(100,181,255,.55)}
+    textarea{min-height:150px;resize:vertical}
+
+    footer{border-top:1px solid var(--border);padding:25px 0;color:var(--muted);font-size:.9rem}
+    .footer-inner{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+
+    @media(max-width:850px){
+      .hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
+      .skills{grid-template-columns:1fr 1fr}
+      .hero-card{max-width:600px}
+      .nav-links{
+        display:none;position:absolute;top:72px;left:0;right:0;
+        padding:20px;background:var(--bg2);border-bottom:1px solid var(--border);
+        flex-direction:column;gap:15px
+      }
+      .nav-links.open{display:flex}
+      .menu{display:block}
+    }
+    @media(max-width:600px){
+      h1{font-size:3.25rem;letter-spacing:-2.5px}
+      .skills,.projects,.certs{grid-template-columns:1fr}
+      .project.featured{grid-column:auto}
+      section{padding:75px 0}
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <a href="#home" class="logo">NPS<span>.</span></a>
+      <button class="menu" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Available for Entry-Level Opportunities</div>
+          <h1>Java Full Stack<br><span>Developer.</span></h1>
+          <p>
+            I'm <strong>N Prabakaran Sethu</strong>, a B.Tech Computer Science Engineering
+            graduate specializing in Data Science & AI, with hands-on experience building
+            database-driven web applications, REST APIs and responsive interfaces.
+          </p>
+          <div class="buttons">
+            <a class="btn primary" href="#projects">View My Projects</a>
+            <a class="btn secondary" href="mailto:somupraba545@gmail.com">Contact Me</a>
+            <!-- Put your resume PDF in this folder and rename it to resume.pdf -->
+            <a class="btn secondary" href="resume.pdf" download>Download Resume</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="code-window">
+            <div class="code-line"><span class="purple">public class</span> <span class="blue">Developer</span> {</div>
+            <div class="code-line">&nbsp;&nbsp;<span class="purple">String</span> role = <span class="green">"Java Full Stack"</span>;</div>
+            <div class="code-line">&nbsp;&nbsp;<span class="purple">String</span> backend = <span class="green">"Spring Boot"</span>;</div>
+            <div class="code-line">&nbsp;&nbsp;<span class="purple">String</span> database = <span class="green">"MySQL"</span>;</div>
+            <div class="code-line">&nbsp;&nbsp;<span class="purple">String</span> frontend = <span class="green">"ReactJS"</span>;</div>
+            <div class="code-line">&nbsp;&nbsp;<span class="purple">String</span> location = <span class="orange">"Chennai, India"</span>;</div>
+            <div class="code-line">}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-title">
+          <div class="tag">01 — About</div>
+          <h2>Building practical web solutions.</h2>
+          <p>A concise overview of my background, focus and technical journey.</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="card">
+            <h3>About Me</h3>
+            <p>
+              B.Tech Computer Science Engineering (Data Science & AI) graduate with
+              hands-on experience in Java full-stack development. I work with Core Java,
+              Spring Boot, Hibernate, REST APIs, MySQL, JSP, Servlets, JDBC and modern
+              frontend technologies.
+            </p>
+            <div class="facts">
+              <div class="fact"><strong>B.Tech</strong><span>CSE — Data Science & AI</span></div>
+              <div class="fact"><strong>2022–2026</strong><span>Graduation</span></div>
+              <div class="fact"><strong>Chennai</strong><span>Tamil Nadu, India</span></div>
+              <div class="fact"><strong>Focus</strong><span>Java Full Stack</span></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>What I Build</h3>
+            <p>
+              Full-stack web applications with structured backend logic, RESTful APIs,
+              relational databases and responsive user interfaces.
+            </p>
+            <br>
+            <p>
+              My internship and academic projects include an Airlines Management System,
+              a Campus Calendar application, business intelligence dashboards and a
+              conversational AI chatbot.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-title">
+          <div class="tag">02 — Skills</div>
+          <h2>My technical toolkit.</h2>
+        </div>
+
+        <div class="skills">
+          <div class="card skill-card">
+            <h3>Frontend</h3>
+            <div class="chips">
+              <span class="chip">HTML5</span><span class="chip">CSS3</span>
+              <span class="chip">JavaScript</span><span class="chip">ReactJS</span>
+            </div>
+          </div>
+          <div class="card skill-card">
+            <h3>Backend</h3>
+            <div class="chips">
+              <span class="chip">Java</span><span class="chip">Spring Boot</span>
+              <span class="chip">REST APIs</span><span class="chip">JSP</span>
+              <span class="chip">Servlets</span><span class="chip">JDBC</span>
+            </div>
+          </div>
+          <div class="card skill-card">
+            <h3>Database & ORM</h3>
+            <div class="chips">
+              <span class="chip">MySQL</span><span class="chip">SQL</span>
+              <span class="chip">Hibernate</span>
+            </div>
+          </div>
+          <div class="card skill-card">
+            <h3>Java Fundamentals</h3>
+            <div class="chips">
+              <span class="chip">OOPs</span><span class="chip">Collections</span>
+              <span class="chip">Exception Handling</span><span class="chip">Arrays</span>
+              <span class="chip">Strings</span><span class="chip">Multithreading</span>
+            </div>
+          </div>
+          <div class="card skill-card">
+            <h3>Tools</h3>
+            <div class="chips">
+              <span class="chip">Git</span><span class="chip">GitHub</span>
+            </div>
+          </div>
+          <div class="card skill-card">
+            <h3>BI & Other</h3>
+            <div class="chips">
+              <span class="chip">IBM Cognos</span><span class="chip">Power BI</span>
+              <span class="chip">Python</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-title">
+          <div class="tag">03 — Experience</div>
+          <h2>Internship experience.</h2>
+        </div>
+
+        <div class="card">
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="date">DEC 2024 — JUN 2025</div>
+              <h3>Java Full Stack Developer Intern</h3>
+              <p>BBT — Full Stack Training Program</p>
+              <ul>
+                <li>Developed dynamic web applications using JSP, Servlets and JDBC.</li>
+                <li>Built RESTful web services and MVC-based applications using Spring Boot and Hibernate ORM.</li>
+                <li>Designed relational database schemas and wrote SQL queries using MySQL.</li>
+                <li>Created responsive frontend interfaces using HTML5 and CSS3.</li>
+                <li>Worked with Core Java, OOPs, exception handling, collections, arrays, strings and multithreading.</li>
+                <li>Developed an Airlines Management System as the capstone full-stack project.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-title">
+          <div class="tag">04 — Projects</div>
+          <h2>Selected work.</h2>
+          <p>Projects demonstrating full-stack development, database work, BI and conversational AI.</p>
+        </div>
+
+        <div class="projects">
+          <article class="card project featured">
+            <div class="project-top">
+              <h3>Airlines Management System</h3>
+              <span class="project-badge">Featured • Java Full Stack</span>
+            </div>
+            <p>
+              A full-stack airline management application developed as the internship
+              capstone project.
+            </p>
+            <ul>
+              <li>Implemented flight scheduling, passenger management and booking modules.</li>
+              <li>Developed REST APIs and backend business logic using Spring Boot and Hibernate.</li>
+              <li>Designed relational MySQL database schemas and SQL queries.</li>
+              <li>Applied OOP principles and exception handling for maintainable application code.</li>
+            </ul>
+            <div class="tech">
+              <span>Java</span><span>Spring Boot</span><span>Hibernate</span>
+              <span>MySQL</span><span>JSP</span><span>Servlets</span>
+            </div>
+          </article>
+
+          <article class="card project">
+            <div class="project-top">
+              <h3>Campus Calendar Web Application</h3>
+              <span class="project-badge">Web</span>
+            </div>
+            <p>Web application designed to track a college timetable by date.</p>
+            <ul>
+              <li>Built the application using HTML, CSS and JavaScript.</li>
+              <li>Implemented a real-time clock that updates automatically.</li>
+            </ul>
+            <div class="tech"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+          </article>
+
+          <article class="card project">
+            <div class="project-top">
+              <h3>Data Visualization Project</h3>
+              <span class="project-badge">BI</span>
+            </div>
+            <p>Business intelligence project analyzing travel data from India to other countries.</p>
+            <ul>
+              <li>Used Watson and IBM Cognos for analysis and visualization.</li>
+              <li>Designed interactive dashboards to present insights.</li>
+            </ul>
+            <div class="tech"><span>IBM Cognos</span><span>Watson</span></div>
+          </article>
+
+          <article class="card project">
+            <div class="project-top">
+              <h3>Chatbot Development</h3>
+              <span class="project-badge">AI</span>
+            </div>
+            <p>Conversational AI chatbot developed for a telecommunications website.</p>
+            <ul>
+              <li>Built using Watson Assistant.</li>
+              <li>Designed to provide instant responses to customer queries.</li>
+            </ul>
+            <div class="tech"><span>Watson Assistant</span><span>Conversational AI</span></div>
+          </article>
+
+          <article class="card project">
+            <div class="project-top">
+              <h3>FitCheck</h3>
+              <span class="project-badge">Concept</span>
+            </div>
+            <p>Weather and occasion-based wardrobe optimization project focused on reducing textile waste.</p>
+            <div class="tech"><span>Weather</span><span>Wardrobe Optimization</span><span>Sustainability</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="certifications">
+      <div class="container">
+        <div class="section-title">
+          <div class="tag">05 — Certifications</div>
+          <h2>Learning & certifications.</h2>
+        </div>
+        <div class="certs">
+          <div class="cert"><strong>Java Full Stack Developer</strong><br><span>BBT</span></div>
+          <div class="cert"><strong>IBM Python Fundamentals</strong><br><span>IBM</span></div>
+          <div class="cert"><strong>IBM Java Fundamentals</strong><br><span>IBM</span></div>
+          <div class="cert"><strong>IBM Cognos</strong><br><span>IBM</span></div>
+          <div class="cert"><strong>IBM Cloud Application Developer</strong><br><span>IBM</span></div>
+          <div class="cert"><strong>NPTEL Computer Graphics</strong><br><span>NPTEL</span></div>
+          <div class="cert"><strong>NPTEL Machine Learning</strong><br><span>NPTEL</span></div>
+          <div class="cert"><strong>AWS Data Science using R</strong><br><span>AWS Activate</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-title">
+          <div class="tag">06 — Contact</div>
+          <h2>Let's connect.</h2>
+          <p>Open to entry-level Web Developer and Java Full Stack opportunities.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="card">
+            <div class="contact-item">
+              <div>✉️</div>
+              <div><strong>Email</strong><span>somupraba545@gmail.com</span></div>
+            </div>
+            <div class="contact-item">
+              <div>📱</div>
+              <div><strong>Phone</strong><span>7418527457</span></div>
+            </div>
+            <div class="contact-item">
+              <div>📍</div>
+              <div><strong>Location</strong><span>Chennai, Tamil Nadu, India</span></div>
+            </div>
+            <div class="contact-item">
+              <div>💻</div>
+              <div>
+                <strong>GitHub</strong>
+                <span><a href="#" onclick="alert('Replace # with your GitHub URL.');return false;">Add your GitHub profile</a></span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div>🔗</div>
+              <div>
+                <strong>LinkedIn</strong>
+                <span><a href="#" onclick="alert('Replace # with your LinkedIn URL.');return false;">Add your LinkedIn profile</a></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <form class="contact-form" onsubmit="sendEmail(event)">
+              <input id="name" type="text" placeholder="Your name" required />
+              <input id="email" type="email" placeholder="Your email" required />
+              <textarea id="message" placeholder="Your message" required></textarea>
+              <button class="btn primary" type="submit">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© 2026 N Prabakaran Sethu</span>
+      <span>Java Full Stack Developer</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu(){
+      document.getElementById("navLinks").classList.toggle("open");
+    }
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        document.getElementById("navLinks").classList.remove("open");
+      });
+    });
+
+    function sendEmail(e){
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const message = document.getElementById("message").value;
+
+      const subject = encodeURIComponent("Portfolio enquiry from " + name);
+      const body = encodeURIComponent(
+        "Name: " + name + "\nEmail: " + email + "\n\n" + message
+      );
+
+      window.location.href =
+        "mailto:somupraba545@gmail.com?subject=" + subject + "&body=" + body;
+    }
+  </script>
+</body>
+</html>
